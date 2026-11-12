@@ -1,0 +1,38 @@
+{
+  "name": "gestura",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Gestura \u2014 an on-device, real-time hand sign interpreter and ASL practice studio.",
+  "scripts": {
+    "assets": "node scripts/fetch-mediapipe-assets.mjs",
+    "predev": "npm run assets",
+    "dev": "vite --host 0.0.0.0",
+    "prebuild": "npm run assets",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "typecheck": "tsc -b",
+    "validate": "esbuild scripts/validate-classifier.ts --bundle --platform=node --format=esm --outfile=node_modules/.cache/validate.mjs --log-level=warning && node node_modules/.cache/validate.mjs",
+    "validate:real": "esbuild scripts/real-sample-check.ts --bundle --platform=node --format=esm --outfile=node_modules/.cache/real-samples.mjs --log-level=warning && node node_modules/.cache/real-samples.mjs",
+    "hands": "esbuild scripts/render-hand-sheet.ts --bundle --platform=node --format=esm --outfile=node_modules/.cache/hand-sheet.mjs --log-level=warning && node node_modules/.cache/hand-sheet.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/inter": "^5.3.0",
+    "@fontsource/instrument-serif": "^5.3.0",
+    "@fontsource/jetbrains-mono": "^5.3.0",
+    "@mediapipe/tasks-vision": "^0.10.35",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "typescript": "~5.7.2",
+    "vite": "^6.0.7"
+  }
+}
